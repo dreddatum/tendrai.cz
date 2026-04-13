@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TendrAI — Porovnání nabídek pro nákupní týmy</title>
+  <meta name="description" content="Nahrajte cenové nabídky od dodavatelů. AI je porovná na úrovni každé položky, ukáže čistou úsporu a pohlídá, že vás na faktuře nenatáhli.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': '#1E3A8A',
+            'brand-light': '#3B82F6',
+            'success': '#10B981',
+            'success-bg': '#D1FAE5',
+            'dark': '#0F172A',
+            'gray': '#64748B',
+          },
+          fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+    }
+    .pulse-green { animation: pulse-green 2s infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .float { animation: float 3s ease-in-out infinite; }
+    @keyframes typing {
+      0% { width: 0; }
+      60% { width: 100%; }
+      80% { width: 100%; }
+      100% { width: 0; }
+    }
+    .typing-line { overflow: hidden; white-space: nowrap; animation: typing 3s steps(30, end) infinite; }
+    .security-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(59,130,246,0.2); }
+  </style>
+</head>
+<body class="bg-white text-dark font-sans antialiased">
+
+<!-- HEADER — pevný s navigací -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-brand-light transform rotate-45 text-2xl">trending_up</span>
+      <span class="font-black text-dark text-xl tracking-tight">TendrAI</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#funkce" class="text-sm font-medium text-gray hover:text-dark transition-colors">Funkce</a>
+      <a href="#bezpecnost" class="text-sm font-medium text-gray hover:text-dark transition-colors">Bezpečnost</a>
+      <a href="#cenik" class="text-sm font-medium text-gray hover:text-dark transition-colors">Ceník</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="https://app.coredesk.cz" class="text-sm font-semibold text-brand-light hover:text-brand transition-colors">Přihlásit se</a>
+      <a href="#demo" class="bg-brand text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-brand-light transition-all shadow-md shadow-brand/20">
+        Zkušební analýza
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="pt-16 min-h-screen flex flex-col justify-center px-6 py-12 md:py-0">
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-brand/5 border border-brand/20 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+          <span class="text-xs font-semibold text-brand uppercase tracking-wider">Aktivní — 200+ firem v ČR</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6">
+          Přestaňte pálit marže na&nbsp;materiálu.
+          <span class="text-brand">AI vybere nejlepší nabídku.</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray mb-8 leading-relaxed">
+          Nahrajte až 5 cenových nabídek od dodavatelů (PDF/Excel). Náš systém je porovná na úrovni každé položky, ukáže čistou úsporu a pohlídá, že vás na faktuře nenatáhli.
+        </p>
+
+        <a href="#demo" class="inline-flex items-center gap-3 bg-brand text-white px-8 py-5 rounded-lg text-lg font-bold hover:bg-brand-light transition-all transform hover:scale-105 shadow-lg shadow-brand/25">
+          <span class="material-symbols-outlined text-2xl">upload_file</span>
+          Zkušební analýza zdarma
+        </a>
+
+        <div class="mt-6 flex flex-wrap gap-4 text-sm text-gray">
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-success text-lg">check_circle</span>
+            Vaše data jsou šifrována
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-success text-lg">check_circle</span>
+            Servery v EU
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-success text-lg">check_circle</span>
+            Dočasné soubory smazány po analýze
+          </span>
+        </div>
+      </div>
+
+      <!-- Dashboard mock -->
+      <div>
+        <div class="bg-dark rounded-2xl overflow-hidden shadow-2xl float">
+          <div class="bg-slate-800 px-4 py-3 flex items-center gap-2">
+            <div class="flex gap-1.5">
+              <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
+            </div>
+            <div class="flex-1 text-center">
+              <span class="text-xs text-slate-400 font-mono">app.coredesk.cz/porovnani</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-6 text-slate-400 text-sm">
+              <span class="material-symbols-outlined text-success">check_circle</span>
+              <span>5 nabídek zpracováno · AI extrahuje položky...</span>
+            </div>
+            <div class="bg-success-bg border-2 border-success rounded-xl p-6 mb-4 pulse-green">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <p class="text-xs font-bold text-success uppercase tracking-wider mb-1">🏆 Doporučený dodavatel</p>
+                  <h3 class="text-2xl font-black text-dark">STAVOMARKET s.r.o.</h3>
+                </div>
+                <span class="bg-success text-white text-xs font-bold px-3 py-1 rounded-full">NEJLEPŠÍ CENA</span>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-gray uppercase">Celková cena</p>
+                  <p class="text-xl font-black text-dark">287 450 Kč</p>
+                </div>
+                <div>
+                  <p class="text-xs text-gray uppercase">Vaše úspora</p>
+                  <p class="text-xl font-black text-success">+ 42 500 Kč</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between py-3 px-4 bg-slate-800/50 rounded-lg">
+                <span class="text-slate-300 text-sm">PROFIMAT CZ</span>
+                <span class="text-slate-400 text-sm">302 100 Kč</span>
+              </div>
+              <div class="flex items-center justify-between py-3 px-4 bg-slate-800/50 rounded-lg">
+                <span class="text-slate-300 text-sm">Stavmat Hrazdil</span>
+                <span class="text-slate-400 text-sm">315 890 Kč</span>
+              </div>
+              <div class="flex items-center justify-between py-3 px-4 bg-slate-800/50 rounded-lg">
+                <span class="text-slate-300 text-sm">WOODCOTE CZ</span>
+                <span class="text-slate-400 text-sm">329 950 Kč</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNKCE -->
+<section class="bg-slate-50 py-24 px-6" id="funkce">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-5xl font-black text-center mb-4">Jak to funguje?</h2>
+    <p class="text-xl text-gray text-center mb-16">Rychleji, než otevřete prázdný Excel.</p>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-brand text-3xl">compare_arrows</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Srovnání jablek s jablky</h3>
+        <p class="text-gray leading-relaxed">AI pochopí, že <strong>"Roxor 12mm"</strong> a <strong>"Ocel betonářská 12"</strong> je to samé. Spárujeme položky i z totálně odlišných formátů ceníků.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-success/10 rounded-xl flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-success text-3xl">bolt</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Okamžitá kalkulace</h3>
+        <p class="text-gray leading-relaxed">Výpočet nejlevnější varianty a nejrychlejší dopravy na stavbu. <strong>Na jeden klik.</strong></p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-red-500 text-3xl">gavel</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Auditor faktur</h3>
+        <p class="text-gray leading-relaxed">Přišla konečná faktura? Nahrajte ji. Systém ji automaticky spáruje s vítěznou nabídkou a <strong>zařve, pokud se cena o haléř liší</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-5xl font-black text-center mb-16">Vaši nákupčí přehlížejí chyby. <span class="text-brand">AI ne.</span></h2>
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8 text-center">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-red-500 text-4xl">edit_note</span>
+        </div>
+        <h3 class="text-xl font-bold text-red-700 mb-2">Ruční přepisování do Excelu</h3>
+        <p class="text-5xl font-black text-red-600 mb-2">45 minut</p>
+        <p class="text-red-400 text-sm">+ riziko chyb v přepisu</p>
+      </div>
+      <div class="bg-success-bg border-2 border-success rounded-2xl p-8 text-center">
+        <div class="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-success text-4xl">auto_awesome</span>
+        </div>
+        <h3 class="text-xl font-bold text-green-700 mb-2">AI analýza</h3>
+        <p class="text-5xl font-black text-success mb-2">2 minuty</p>
+        <p class="text-green-600 text-sm">+ kompletní přehled úspor</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+      <div class="text-center"><p class="text-5xl font-black text-brand">0</p><p class="text-gray text-sm uppercase tracking-wider">chyb v přepisu</p></div>
+      <div class="text-center"><p class="text-5xl font-black text-brand">100%</p><p class="text-gray text-sm uppercase tracking-wider">detekce skrytých poplatků</p></div>
+      <div class="text-center"><p class="text-5xl font-black text-brand">∅ 12%</p><p class="text-gray text-sm uppercase tracking-wider">úspora na zakázku</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEZPEČNOST -->
+<section class="py-24 px-6 bg-dark" id="bezpecnost">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 bg-brand/20 border border-brand/30 rounded-full px-4 py-1.5 mb-6">
+        <span class="material-symbols-outlined text-brand-light text-sm">verified_user</span>
+        <span class="text-xs font-semibold text-brand-light uppercase tracking-wider">Bezpečnost dat</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Vaše ceníky jsou obchodní tajemství. <span class="text-brand-light">Chráníme je.</span></h2>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">Nahráváte nám citlivá data — slevy u dodavatelů, interní ceny, obchodní podmínky. Bezpečnost proto bereme vážněji než výkon.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="security-card rounded-2xl p-6">
+        <span class="material-symbols-outlined text-brand-light text-3xl mb-4 block">lock</span>
+        <h3 class="font-bold text-white mb-2">Šifrování AES-256</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Vaše soubory jsou šifrované při přenosu i při uložení. Stejný standard jako internetové bankovnictví.</p>
+      </div>
+      <div class="security-card rounded-2xl p-6">
+        <span class="material-symbols-outlined text-brand-light text-3xl mb-4 block">public</span>
+        <h3 class="font-bold text-white mb-2">Servery v EU</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Data jsou uložena výhradně na serverech v Evropské unii. Plná shoda s GDPR a českou legislativou.</p>
+      </div>
+      <div class="security-card rounded-2xl p-6">
+        <span class="material-symbols-outlined text-brand-light text-3xl mb-4 block">delete_forever</span>
+        <h3 class="font-bold text-white mb-2">Automatické mazání</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Dočasné soubory jsou automaticky smazány ihned po dokončení analýzy. V systému zůstávají jen výsledky.</p>
+      </div>
+      <div class="security-card rounded-2xl p-6">
+        <span class="material-symbols-outlined text-brand-light text-3xl mb-4 block">visibility_off</span>
+        <h3 class="font-bold text-white mb-2">AI netrénujeme na vašich datech</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Vaše nabídky nikdy nepoužijeme k trénování AI modelů. Data slouží výhradně pro vaši analýzu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENÍK -->
+<section class="py-24 px-6 bg-slate-50" id="cenik">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-black mb-4">Transparentní ceník</h2>
+      <p class="text-xl text-gray">Žádné skryté poplatky. Žádné překvapení na faktuře.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Starter -->
+      <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+        <p class="text-sm font-bold text-gray uppercase tracking-wider mb-2">Starter</p>
+        <p class="text-4xl font-black text-dark mb-1">2 900 Kč<span class="text-lg font-normal text-gray">/měs.</span></p>
+        <p class="text-sm text-gray mb-8">Pro menší projekty a jednotlivce</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>20 analýz měsíčně</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Až 5 nabídek v analýze</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Export do PDF</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Historie analýz</li>
+          <li class="flex items-center gap-2 text-sm text-slate-300"><span class="material-symbols-outlined text-slate-300 text-lg">close</span>Týmová spolupráce</li>
+          <li class="flex items-center gap-2 text-sm text-slate-300"><span class="material-symbols-outlined text-slate-300 text-lg">close</span>Analýza smluv</li>
+        </ul>
+        <a href="https://app.coredesk.cz" class="block w-full text-center border-2 border-brand text-brand px-6 py-3 rounded-lg font-bold hover:bg-brand hover:text-white transition-all">Začít zdarma</a>
+      </div>
+
+      <!-- Business — highlighted -->
+      <div class="bg-brand rounded-2xl p-8 border border-brand shadow-xl shadow-brand/20 relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-success text-white text-xs font-bold px-4 py-1 rounded-full">NEJPOPULÁRNĚJŠÍ</div>
+        <p class="text-sm font-bold text-blue-200 uppercase tracking-wider mb-2">Business</p>
+        <p class="text-4xl font-black text-white mb-1">7 500 Kč<span class="text-lg font-normal text-blue-200">/měs.</span></p>
+        <p class="text-sm text-blue-200 mb-8">Pro nákupní týmy a stavební firmy</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-white"><span class="material-symbols-outlined text-success text-lg">check</span>Neomezené analýzy</li>
+          <li class="flex items-center gap-2 text-sm text-white"><span class="material-symbols-outlined text-success text-lg">check</span>Až 10 nabídek v analýze</li>
+          <li class="flex items-center gap-2 text-sm text-white"><span class="material-symbols-outlined text-success text-lg">check</span>Týmová spolupráce (5 uživatelů)</li>
+          <li class="flex items-center gap-2 text-sm text-white"><span class="material-symbols-outlined text-success text-lg">check</span>Analýza smluv AI</li>
+          <li class="flex items-center gap-2 text-sm text-white"><span class="material-symbols-outlined text-success text-lg">check</span>Párování faktur</li>
+          <li class="flex items-center gap-2 text-sm text-white"><span class="material-symbols-outlined text-success text-lg">check</span>Prioritní podpora</li>
+        </ul>
+        <a href="https://app.coredesk.cz" class="block w-full text-center bg-white text-brand px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-all">Začít zdarma</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+        <p class="text-sm font-bold text-gray uppercase tracking-wider mb-2">Enterprise</p>
+        <p class="text-4xl font-black text-dark mb-1">Na míru</p>
+        <p class="text-sm text-gray mb-8">Pro velké organizace s vlastními požadavky</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Vše z Business</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Neomezený počet uživatelů</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Vlastní integrace (API)</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>SLA garance</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Školení týmu</li>
+          <li class="flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-success text-lg">check</span>Dedikovaný account manager</li>
+        </ul>
+        <a href="mailto:info@tendrai.cz" class="block w-full text-center border-2 border-brand text-brand px-6 py-3 rounded-lg font-bold hover:bg-brand hover:text-white transition-all">Kontaktovat obchod</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO FORMULÁŘ -->
+<section class="bg-dark py-24 px-6 scroll-mt-20" id="demo">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl md:text-5xl font-black text-white mb-6">
+      Každý tendr bez AI vás stojí peníze.
+      <span class="text-brand-light">Zastavte to.</span>
+    </h2>
+    <p class="text-xl text-slate-400 mb-4">Získejte vzorovou analýzu do 5 minut.</p>
+    <p class="text-sm text-slate-500 mb-12">Nahrajte alespoň 2 nabídky od různých dodavatelů. Výsledek přijde na váš e-mail — spolu s doporučením a výpočtem úspory.</p>
+
+    <div id="demo-form" class="max-w-md mx-auto text-left">
+      <form id="landing-demo-upload-form" class="space-y-5">
+        <div class="flex flex-col gap-4">
+          <div>
+            <label for="ld-firma" class="mb-1 block text-sm font-medium text-slate-300">Název firmy *</label>
+            <input id="ld-firma" name="firma" type="text" required placeholder="Název firmy"
+              class="w-full px-6 py-4 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-light"/>
+          </div>
+          <div>
+            <label for="ld-email" class="mb-1 block text-sm font-medium text-slate-300">Pracovní e-mail *</label>
+            <input id="ld-email" name="email" type="email" required placeholder="vas@firma.cz"
+              class="w-full px-6 py-4 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-light"/>
+          </div>
+          <div>
+            <label for="ld-telefon" class="mb-1 block text-sm font-medium text-slate-300">Telefon <span class="text-slate-500">(pro konzultaci výsledků)</span></label>
+            <input id="ld-telefon" name="telefon" type="tel" placeholder="+420 xxx xxx xxx"
+              class="w-full px-6 py-4 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-light"/>
+          </div>
+        </div>
+
+        <div>
+          <p class="mb-2 text-sm font-medium text-slate-300">Nabídky od dodavatelů * <span class="text-slate-500">(PDF nebo Excel, min. 2 soubory)</span></p>
+          <div id="demo-dropzone"
+            class="rounded-xl border-2 border-dashed border-slate-600 bg-slate-800/50 px-4 py-8 text-center transition-colors hover:border-brand-light cursor-pointer">
+            <input id="ld-file" type="file" multiple
+              accept=".pdf,.xlsx,.xls,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              class="hidden"/>
+            <span class="material-symbols-outlined text-4xl text-brand-light mb-2 block">cloud_upload</span>
+            <button type="button" id="ld-file-trigger" class="text-brand-light font-semibold underline decoration-2 underline-offset-2 hover:text-white">
+              Vyberte soubory
+            </button>
+            <p class="mt-2 text-xs text-slate-500">nebo přetáhněte sem · max. 10 MB na soubor</p>
+            <p id="ld-file-name" class="mt-3 hidden text-sm font-bold text-success"></p>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500 text-center">Vaše soubory jsou šifrované a smazány ihned po analýze. Nikdy je nesdílíme ani nepoužíváme k trénování AI.</p>
+
+        <p id="ld-msg" class="hidden rounded-lg px-4 py-3 text-sm font-medium" role="status"></p>
+
+        <button type="submit" id="ld-submit"
+          class="w-full bg-brand-light text-white px-8 py-5 rounded-lg text-lg font-bold hover:bg-brand transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
+          <span class="material-symbols-outlined">analytics</span>
+          Spočítat úsporu
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-slate-900 py-12 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center justify-center bg-white w-10 h-10 rounded transform rotate-45">
+        <span class="material-symbols-outlined text-slate-900 text-xl transform -rotate-45">trending_up</span>
+      </div>
+      <span class="text-xl font-bold text-white">TendrAI</span>
+    </div>
+    <div class="flex gap-6 text-sm text-slate-500">
+      <a href="mailto:info@tendrai.cz" class="hover:text-white transition-colors">info@tendrai.cz</a>
+      <a href="https://app.coredesk.cz" class="hover:text-white transition-colors">Přihlásit se</a>
+    </div>
+    <p class="text-slate-500 text-sm">© 2026 CoreDesk Solutions</p>
+  </div>
+</footer>
+
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+  const SUPABASE_URL = "https://hsbjeffziqmdexqfgzox.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzYmplZmZ6aXFtZGV4cWZnem94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MjA4MTQsImV4cCI6MjA4OTQ5NjgxNH0.ATWygcpUeIhhrB4_HQDME_ui4p6mupQ52AWQnZXwF00";
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const BUCKET = "landing-uploads";
+  const MAX_BYTES = 10 * 1024 * 1024;
+  const ALLOWED_EXT = /\.(pdf|xlsx|xls)$/i;
+
+  function safeSegment(name) {
+    const base = (name || "soubor").replace(/[^a-zA-Z0-9._-]/g, "_");
+    return base.slice(0, 180) || "soubor";
+  }
+
+  document.querySelectorAll('a[href="#demo"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+      const zone = document.getElementById("demo-dropzone");
+      if (zone) {
+        zone.classList.add("ring-4", "ring-brand-light");
+        setTimeout(() => zone.classList.remove("ring-4", "ring-brand-light"), 1000);
+      }
+    });
+  });
+
+  const fileInput = document.getElementById("ld-file");
+  const fileTrigger = document.getElementById("ld-file-trigger");
+  const fileLabel = document.getElementById("ld-file-name");
+  const dropzone = document.getElementById("demo-dropzone");
+  const form = document.getElementById("landing-demo-upload-form");
+  const msg = document.getElementById("ld-msg");
+  const submitBtn = document.getElementById("ld-submit");
+  let stagedFiles = [];
+
+  function showMsg(text, isError) {
+    msg.textContent = text;
+    msg.classList.remove("hidden", "bg-red-900/40", "text-red-400", "bg-emerald-900/40", "text-emerald-400");
+    msg.classList.add(isError ? "bg-red-900/40" : "bg-emerald-900/40", isError ? "text-red-400" : "text-emerald-400");
+  }
+
+  function setFiles(files) {
+    if (!files || files.length === 0) { stagedFiles = []; fileLabel.classList.add("hidden"); return; }
+    const validFiles = [];
+    for (const f of files) {
+      if (!ALLOWED_EXT.test(f.name)) { showMsg(`Soubor "${f.name}" má špatný formát. Přijímáme jen PDF a Excel.`, true); return; }
+      if (f.size > MAX_BYTES) { showMsg(`Soubor "${f.name}" je příliš velký (max 10 MB).`, true); return; }
+      validFiles.push(f);
+    }
+    stagedFiles = validFiles;
+    fileLabel.textContent = "✅ Vybráno: " + validFiles.map(f => f.name).join(", ");
+    fileLabel.classList.remove("hidden");
+    msg.classList.add("hidden");
+  }
+
+  fileTrigger?.addEventListener("click", () => fileInput?.click());
+  dropzone?.addEventListener("click", (e) => { if (e.target !== fileInput && e.target !== fileTrigger) fileInput?.click(); });
+  fileInput?.addEventListener("change", () => { const files = Array.from(fileInput.files || []); if (files.length) setFiles(files); });
+  dropzone?.addEventListener("dragover", (e) => { e.preventDefault(); dropzone.classList.add("border-brand-light", "bg-slate-800"); });
+  dropzone?.addEventListener("dragleave", () => { dropzone.classList.remove("border-brand-light", "bg-slate-800"); });
+  dropzone?.addEventListener("drop", (e) => { e.preventDefault(); dropzone.classList.remove("border-brand-light", "bg-slate-800"); const files = Array.from(e.dataTransfer?.files || []); if (files.length) setFiles(files); });
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.classList.add("hidden");
+    const firma = document.getElementById("ld-firma")?.value?.trim();
+    const email = document.getElementById("ld-email")?.value?.trim();
+    const telefon = document.getElementById("ld-telefon")?.value?.trim();
+    if (!stagedFiles.length) { showMsg("Prosím, vyberte nebo přetáhněte alespoň 2 soubory s nabídkami.", true); return; }
+    if (stagedFiles.length < 2) { showMsg("Pro smysluplné srovnání nahrajte alespoň 2 nabídky od různých dodavatelů.", true); return; }
+    submitBtn.disabled = true;
+    const prevHtml = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Nahrávám soubory...';
+    const filePaths = [];
+    const fileNames = [];
+    try {
+      for (const file of stagedFiles) {
+        const filePath = "incoming/" + crypto.randomUUID() + "_" + safeSegment(file.name);
+        const { error: upErr } = await supabase.storage.from(BUCKET).upload(filePath, file);
+        if (upErr) throw new Error("Chyba nahrávání (" + file.name + "): " + upErr.message);
+        filePaths.push(filePath);
+        fileNames.push(file.name);
+      }
+      supabase.functions.invoke("process-landing-lead", {
+        body: { firma, email, telefon, filePaths, fileNames },
+      });
+      showMsg("Děkujeme! Analýza probíhá. Výsledek s doporučením a výpočtem úspory vám přijde na e-mail do 5 minut.", false);
+      form.reset();
+      setFiles(null);
+    } catch (err) {
+      showMsg(err.message || "Došlo k chybě připojení. Zkuste to prosím znovu.", true);
+    } finally {
+      submitBtn.innerHTML = prevHtml;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
