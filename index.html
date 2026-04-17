@@ -487,9 +487,32 @@
         filePaths.push(filePath);
         fileNames.push(file.name);
       }
-      supabase.functions.invoke("process-landing-lead", {
-        body: { firma, email, telefon, filePaths, fileNames },
-      });
+      stry {
+  // Převeď soubory na base64
+  const filesBase64 = await Promise.all(
+    stagedFiles.map(f => new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res({ name: f.name, base64: r.result });
+      r.onerror = rej;
+      r.readAsDataURL(f);
+    }))
+  );
+
+  const { error: fnErr } = await supabase.functions.invoke("process-landing-lead", {
+    body: { email, files: filesBase64 },
+  });
+
+  if (fnErr) throw new Error(fnErr.message);
+
+  showMsg("Děkujeme! Analýza probíhá. Výsledek přijde na e-mail do 5 minut.", false);
+  form.reset();
+  setFiles(null);
+} catch (err) {
+  showMsg(err.message || "Došlo k chybě připojení. Zkuste to prosím znovu.", true);
+} finally {
+  submitBtn.innerHTML = prevHtml;
+  submitBtn.disabled = false;
+}
       showMsg("Děkujeme! Analýza probíhá. Výsledek s doporučením a výpočtem úspory vám přijde na e-mail do 5 minut.", false);
       form.reset();
       setFiles(null);
