@@ -4,7 +4,19 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TendrAI — Porovnání nabídek pro nákupní týmy</title>
-  <meta name="description" content="Nahrajte cenové nabídky od dodavatelů. AI je porovná na úrovni každé položky, ukáže čistou úsporu a pohlídá, že vás na faktuře nenatáhli.">
+  <meta name="description" content="Nahrajte cenové nabídky od dodavatelů. AI je porovná na úrovni každé položky, ukáže nejlevnější variantu a pohlídá, že vás na faktuře nenatáhli."/>
+
+  <!-- Open Graph / sociální sítě -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="TendrAI"/>
+  <meta property="og:title" content="TendrAI — Porovnání nabídek pro nákupní týmy"/>
+  <meta property="og:description" content="AI porovná nabídky od dodavatelů na úrovni každé položky a spočítá úsporu. Zkušební analýza zdarma."/>
+  <meta property="og:url" content="https://tendrai.cz"/>
+  <meta property="og:locale" content="cs_CZ"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="TendrAI — Porovnání nabídek pro nákupní týmy"/>
+  <meta name="twitter:description" content="AI porovná nabídky od dodavatelů na úrovni každé položky a spočítá úsporu."/>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -69,23 +81,33 @@
       <div>
         <div class="inline-flex items-center gap-2 bg-brand/5 border border-brand/20 rounded-full px-4 py-1.5 mb-6">
           <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
-          <span class="text-xs font-semibold text-brand uppercase tracking-wider">Beta verze — prvních 20 firem zdarma na 3 měsíce</span>
+          <span class="text-xs font-semibold text-brand uppercase tracking-wider">Beta — prvních 20 firem zdarma na 3 měsíce</span>
         </div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6">
-          Přestaňte pálit marže na&nbsp;materiálu.
+          Přestaňte přeplácet za&nbsp;materiál.
           <span class="text-brand">AI vybere nejlepší nabídku.</span>
         </h1>
         <p class="text-lg md:text-xl text-gray mb-8 leading-relaxed">
-          Nahrajte až 5 cenových nabídek od dodavatelů (PDF/Excel). Náš systém je porovná na úrovni každé položky, ukáže čistou úsporu a pohlídá, že vás na faktuře nenatáhli.
+          Nahrajte až 5 cenových nabídek od dodavatelů (PDF/Excel). Systém je porovná na úrovni každé položky, ukáže nejlevnější variantu a pohlídá, že vás na faktuře nenatáhli.
         </p>
-        <a href="#demo" class="inline-flex items-center gap-3 bg-brand text-white px-8 py-5 rounded-lg text-lg font-bold hover:bg-brand-light transition-all transform hover:scale-105 shadow-lg shadow-brand/25">
-          <span class="material-symbols-outlined text-2xl">upload_file</span>
-          Zkušební analýza zdarma
-        </a>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="#demo" class="inline-flex items-center justify-center gap-3 bg-brand text-white px-8 py-5 rounded-lg text-lg font-bold hover:bg-brand-light transition-all transform hover:scale-105 shadow-lg shadow-brand/25">
+            <span class="material-symbols-outlined text-2xl">upload_file</span>
+            Zkušební analýza zdarma
+          </a>
+          <a href="#funkce" class="inline-flex items-center justify-center gap-2 text-brand px-6 py-5 rounded-lg text-lg font-semibold hover:bg-slate-50 transition-all">
+            Jak to funguje
+            <span class="material-symbols-outlined">arrow_downward</span>
+          </a>
+        </div>
         <div class="mt-6 flex flex-wrap gap-4 text-sm text-gray">
           <span class="flex items-center gap-1.5">
             <span class="material-symbols-outlined text-success text-lg">check_circle</span>
-            Vaše data jsou šifrována
+            Bez kreditky
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-success text-lg">check_circle</span>
+            Šifrování AES-256
           </span>
           <span class="flex items-center gap-1.5">
             <span class="material-symbols-outlined text-success text-lg">check_circle</span>
@@ -93,7 +115,7 @@
           </span>
           <span class="flex items-center gap-1.5">
             <span class="material-symbols-outlined text-success text-lg">check_circle</span>
-            Dočasné soubory smazány po analýze
+            GDPR shoda
           </span>
         </div>
       </div>
@@ -154,6 +176,17 @@
   </div>
 </section>
 
+<!-- Poctivý social proof pro beta fázi -->
+<section class="bg-white border-y border-slate-100 py-8 px-6">
+  <div class="max-w-5xl mx-auto text-center">
+    <p class="text-sm text-gray">
+      <span class="font-semibold text-dark">Aktuálně v beta fázi.</span>
+      Testujeme s českými stavebními a výrobními firmami. Chcete být mezi prvními?
+      <a href="#demo" class="text-brand-light font-semibold hover:underline">Připojte se ↓</a>
+    </p>
+  </div>
+</section>
+
 <section class="bg-slate-50 py-24 px-6" id="funkce">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl md:text-5xl font-black text-center mb-4">Jak to funguje?</h2>
@@ -186,7 +219,8 @@
 
 <section class="py-24 px-6">
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl md:text-5xl font-black text-center mb-16">Vaši nákupčí přehlížejí chyby. <span class="text-brand">AI ne.</span></h2>
+    <h2 class="text-3xl md:text-5xl font-black text-center mb-4">Ruční porovnávání stojí hodiny,</h2>
+    <h2 class="text-3xl md:text-5xl font-black text-center mb-16">které vaši nákupčí <span class="text-brand">nemají.</span></h2>
     <div class="grid md:grid-cols-2 gap-8 mb-16">
       <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8 text-center">
         <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -206,9 +240,18 @@
       </div>
     </div>
     <div class="flex flex-wrap justify-center gap-8 md:gap-16">
-      <div class="text-center"><p class="text-5xl font-black text-brand">0</p><p class="text-gray text-sm uppercase tracking-wider">chyb v přepisu</p></div>
-      <div class="text-center"><p class="text-5xl font-black text-brand">100%</p><p class="text-gray text-sm uppercase tracking-wider">detekce skrytých poplatků</p></div>
-      <div class="text-center"><p class="text-5xl font-black text-brand">∅ 12%</p><p class="text-gray text-sm uppercase tracking-wider">úspora na zakázku</p></div>
+      <div class="text-center">
+        <p class="text-4xl md:text-5xl font-black text-brand">0</p>
+        <p class="text-gray text-sm uppercase tracking-wider mt-1">chyb v přepisu</p>
+      </div>
+      <div class="text-center">
+        <p class="text-4xl md:text-5xl font-black text-brand">Každá<br/>položka</p>
+        <p class="text-gray text-sm uppercase tracking-wider mt-1">porovnána na detail</p>
+      </div>
+      <div class="text-center">
+        <p class="text-4xl md:text-5xl font-black text-brand">EU<br/>servery</p>
+        <p class="text-gray text-sm uppercase tracking-wider mt-1">plná GDPR shoda</p>
+      </div>
     </div>
   </div>
 </section>
@@ -250,10 +293,20 @@
 
 <section class="py-24 px-6 bg-slate-50" id="cenik">
   <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-16">
+    <div class="text-center mb-12">
       <h2 class="text-3xl md:text-5xl font-black mb-4">Transparentní ceník</h2>
-      <p class="text-xl text-gray">Žádné skryté poplatky. Žádné překvapení na faktuře.</p>
+      <p class="text-xl text-gray mb-6">Žádné skryté poplatky. Žádné překvapení na faktuře.</p>
+      <div class="inline-flex items-center gap-2 bg-success-bg border border-success/30 rounded-full px-5 py-2">
+        <span class="material-symbols-outlined text-success text-lg">savings</span>
+        <span class="text-sm font-semibold text-green-700">Jedna ušetřená zakázka obvykle pokryje roční plán.</span>
+      </div>
     </div>
+    <p class="text-center text-sm text-gray mb-10">
+      <span class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-3 py-1">
+        <span class="material-symbols-outlined text-brand-light text-base">auto_awesome</span>
+        <span>Při roční platbě získáte <strong class="text-dark">2 měsíce zdarma</strong></span>
+      </span>
+    </p>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
         <p class="text-sm font-bold text-gray uppercase tracking-wider mb-2">Starter</p>
@@ -270,7 +323,7 @@
         <a href="https://app.coredesk.cz" class="block w-full text-center border-2 border-brand text-brand px-6 py-3 rounded-lg font-bold hover:bg-brand hover:text-white transition-all">Začít zdarma</a>
       </div>
       <div class="bg-brand rounded-2xl p-8 border border-brand shadow-xl shadow-brand/20 relative">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-success text-white text-xs font-bold px-4 py-1 rounded-full">NEJPOPULÁRNĚJŠÍ</div>
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-success text-white text-xs font-bold px-4 py-1 rounded-full">DOPORUČUJEME</div>
         <p class="text-sm font-bold text-blue-200 uppercase tracking-wider mb-2">Business</p>
         <p class="text-4xl font-black text-white mb-1">7 500 Kč<span class="text-lg font-normal text-blue-200">/měs.</span></p>
         <p class="text-sm text-blue-200 mb-8">Pro nákupní týmy a stavební firmy</p>
