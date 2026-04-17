@@ -38,19 +38,11 @@
       50% { transform: translateY(-8px); }
     }
     .float { animation: float 3s ease-in-out infinite; }
-    @keyframes typing {
-      0% { width: 0; }
-      60% { width: 100%; }
-      80% { width: 100%; }
-      100% { width: 0; }
-    }
-    .typing-line { overflow: hidden; white-space: nowrap; animation: typing 3s steps(30, end) infinite; }
     .security-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(59,130,246,0.2); }
   </style>
 </head>
 <body class="bg-white text-dark font-sans antialiased">
 
-<!-- HEADER — pevný s navigací -->
 <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
   <div class="max-w-6xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
     <div class="flex items-center gap-2">
@@ -71,30 +63,25 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="pt-16 min-h-screen flex flex-col justify-center px-6 py-12 md:py-0">
   <div class="max-w-6xl mx-auto w-full">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div>
         <div class="inline-flex items-center gap-2 bg-brand/5 border border-brand/20 rounded-full px-4 py-1.5 mb-6">
           <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
-          <span class="text-xs font-semibold text-brand uppercase tracking-wider">Aktivní — 200+ firem v ČR</span>
+          <span class="text-xs font-semibold text-brand uppercase tracking-wider">Beta verze — prvních 20 firem zdarma na 3 měsíce</span>
         </div>
-
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6">
           Přestaňte pálit marže na&nbsp;materiálu.
           <span class="text-brand">AI vybere nejlepší nabídku.</span>
         </h1>
-
         <p class="text-lg md:text-xl text-gray mb-8 leading-relaxed">
           Nahrajte až 5 cenových nabídek od dodavatelů (PDF/Excel). Náš systém je porovná na úrovni každé položky, ukáže čistou úsporu a pohlídá, že vás na faktuře nenatáhli.
         </p>
-
         <a href="#demo" class="inline-flex items-center gap-3 bg-brand text-white px-8 py-5 rounded-lg text-lg font-bold hover:bg-brand-light transition-all transform hover:scale-105 shadow-lg shadow-brand/25">
           <span class="material-symbols-outlined text-2xl">upload_file</span>
           Zkušební analýza zdarma
         </a>
-
         <div class="mt-6 flex flex-wrap gap-4 text-sm text-gray">
           <span class="flex items-center gap-1.5">
             <span class="material-symbols-outlined text-success text-lg">check_circle</span>
@@ -110,8 +97,6 @@
           </span>
         </div>
       </div>
-
-      <!-- Dashboard mock -->
       <div>
         <div class="bg-dark rounded-2xl overflow-hidden shadow-2xl float">
           <div class="bg-slate-800 px-4 py-3 flex items-center gap-2">
@@ -169,7 +154,6 @@
   </div>
 </section>
 
-<!-- FUNKCE -->
 <section class="bg-slate-50 py-24 px-6" id="funkce">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl md:text-5xl font-black text-center mb-4">Jak to funguje?</h2>
@@ -200,7 +184,6 @@
   </div>
 </section>
 
-<!-- ROI -->
 <section class="py-24 px-6">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl md:text-5xl font-black text-center mb-16">Vaši nákupčí přehlížejí chyby. <span class="text-brand">AI ne.</span></h2>
@@ -230,7 +213,6 @@
   </div>
 </section>
 
-<!-- BEZPEČNOST -->
 <section class="py-24 px-6 bg-dark" id="bezpecnost">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
@@ -266,7 +248,6 @@
   </div>
 </section>
 
-<!-- CENÍK -->
 <section class="py-24 px-6 bg-slate-50" id="cenik">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
@@ -274,7 +255,6 @@
       <p class="text-xl text-gray">Žádné skryté poplatky. Žádné překvapení na faktuře.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Starter -->
       <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
         <p class="text-sm font-bold text-gray uppercase tracking-wider mb-2">Starter</p>
         <p class="text-4xl font-black text-dark mb-1">2 900 Kč<span class="text-lg font-normal text-gray">/měs.</span></p>
@@ -289,8 +269,6 @@
         </ul>
         <a href="https://app.coredesk.cz" class="block w-full text-center border-2 border-brand text-brand px-6 py-3 rounded-lg font-bold hover:bg-brand hover:text-white transition-all">Začít zdarma</a>
       </div>
-
-      <!-- Business — highlighted -->
       <div class="bg-brand rounded-2xl p-8 border border-brand shadow-xl shadow-brand/20 relative">
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-success text-white text-xs font-bold px-4 py-1 rounded-full">NEJPOPULÁRNĚJŠÍ</div>
         <p class="text-sm font-bold text-blue-200 uppercase tracking-wider mb-2">Business</p>
@@ -306,8 +284,6 @@
         </ul>
         <a href="https://app.coredesk.cz" class="block w-full text-center bg-white text-brand px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-all">Začít zdarma</a>
       </div>
-
-      <!-- Enterprise -->
       <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
         <p class="text-sm font-bold text-gray uppercase tracking-wider mb-2">Enterprise</p>
         <p class="text-4xl font-black text-dark mb-1">Na míru</p>
@@ -326,7 +302,6 @@
   </div>
 </section>
 
-<!-- DEMO FORMULÁŘ -->
 <section class="bg-dark py-24 px-6 scroll-mt-20" id="demo">
   <div class="max-w-3xl mx-auto text-center">
     <h2 class="text-3xl md:text-5xl font-black text-white mb-6">
@@ -335,7 +310,6 @@
     </h2>
     <p class="text-xl text-slate-400 mb-4">Získejte vzorovou analýzu do 5 minut.</p>
     <p class="text-sm text-slate-500 mb-12">Nahrajte alespoň 2 nabídky od různých dodavatelů. Výsledek přijde na váš e-mail — spolu s doporučením a výpočtem úspory.</p>
-
     <div id="demo-form" class="max-w-md mx-auto text-left">
       <form id="landing-demo-upload-form" class="space-y-5">
         <div class="flex flex-col gap-4">
@@ -355,7 +329,6 @@
               class="w-full px-6 py-4 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-light"/>
           </div>
         </div>
-
         <div>
           <p class="mb-2 text-sm font-medium text-slate-300">Nabídky od dodavatelů * <span class="text-slate-500">(PDF nebo Excel, min. 2 soubory)</span></p>
           <div id="demo-dropzone"
@@ -371,11 +344,8 @@
             <p id="ld-file-name" class="mt-3 hidden text-sm font-bold text-success"></p>
           </div>
         </div>
-
         <p class="text-xs text-slate-500 text-center">Vaše soubory jsou šifrované a smazány ihned po analýze. Nikdy je nesdílíme ani nepoužíváme k trénování AI.</p>
-
         <p id="ld-msg" class="hidden rounded-lg px-4 py-3 text-sm font-medium" role="status"></p>
-
         <button type="submit" id="ld-submit"
           class="w-full bg-brand-light text-white px-8 py-5 rounded-lg text-lg font-bold hover:bg-brand transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
           <span class="material-symbols-outlined">analytics</span>
@@ -409,35 +379,29 @@
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzYmplZmZ6aXFtZGV4cWZnem94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MjA4MTQsImV4cCI6MjA4OTQ5NjgxNH0.ATWygcpUeIhhrB4_HQDME_ui4p6mupQ52AWQnZXwF00";
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const BUCKET = "landing-uploads";
   const MAX_BYTES = 10 * 1024 * 1024;
   const ALLOWED_EXT = /\.(pdf|xlsx|xls)$/i;
 
-  function safeSegment(name) {
-    const base = (name || "soubor").replace(/[^a-zA-Z0-9._-]/g, "_");
-    return base.slice(0, 180) || "soubor";
-  }
-
-  document.querySelectorAll('a[href="#demo"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
+  document.querySelectorAll('a[href="#demo"]').forEach(function(a) {
+    a.addEventListener("click", function(e) {
       e.preventDefault();
-      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
-      const zone = document.getElementById("demo-dropzone");
+      document.getElementById("demo").scrollIntoView({ behavior: "smooth" });
+      var zone = document.getElementById("demo-dropzone");
       if (zone) {
         zone.classList.add("ring-4", "ring-brand-light");
-        setTimeout(() => zone.classList.remove("ring-4", "ring-brand-light"), 1000);
+        setTimeout(function() { zone.classList.remove("ring-4", "ring-brand-light"); }, 1000);
       }
     });
   });
 
-  const fileInput = document.getElementById("ld-file");
-  const fileTrigger = document.getElementById("ld-file-trigger");
-  const fileLabel = document.getElementById("ld-file-name");
-  const dropzone = document.getElementById("demo-dropzone");
-  const form = document.getElementById("landing-demo-upload-form");
-  const msg = document.getElementById("ld-msg");
-  const submitBtn = document.getElementById("ld-submit");
-  let stagedFiles = [];
+  var fileInput = document.getElementById("ld-file");
+  var fileTrigger = document.getElementById("ld-file-trigger");
+  var fileLabel = document.getElementById("ld-file-name");
+  var dropzone = document.getElementById("demo-dropzone");
+  var form = document.getElementById("landing-demo-upload-form");
+  var msg = document.getElementById("ld-msg");
+  var submitBtn = document.getElementById("ld-submit");
+  var stagedFiles = [];
 
   function showMsg(text, isError) {
     msg.textContent = text;
@@ -447,82 +411,60 @@
 
   function setFiles(files) {
     if (!files || files.length === 0) { stagedFiles = []; fileLabel.classList.add("hidden"); return; }
-    const validFiles = [];
-    for (const f of files) {
-      if (!ALLOWED_EXT.test(f.name)) { showMsg(`Soubor "${f.name}" má špatný formát. Přijímáme jen PDF a Excel.`, true); return; }
-      if (f.size > MAX_BYTES) { showMsg(`Soubor "${f.name}" je příliš velký (max 10 MB).`, true); return; }
+    var validFiles = [];
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      if (!ALLOWED_EXT.test(f.name)) { showMsg("Soubor " + f.name + " má špatný formát. Přijímáme jen PDF a Excel.", true); return; }
+      if (f.size > MAX_BYTES) { showMsg("Soubor " + f.name + " je příliš velký (max 10 MB).", true); return; }
       validFiles.push(f);
     }
     stagedFiles = validFiles;
-    fileLabel.textContent = "✅ Vybráno: " + validFiles.map(f => f.name).join(", ");
+    fileLabel.textContent = "✅ Vybráno: " + validFiles.map(function(f) { return f.name; }).join(", ");
     fileLabel.classList.remove("hidden");
     msg.classList.add("hidden");
   }
 
-  fileTrigger?.addEventListener("click", () => fileInput?.click());
-  dropzone?.addEventListener("click", (e) => { if (e.target !== fileInput && e.target !== fileTrigger) fileInput?.click(); });
-  fileInput?.addEventListener("change", () => { const files = Array.from(fileInput.files || []); if (files.length) setFiles(files); });
-  dropzone?.addEventListener("dragover", (e) => { e.preventDefault(); dropzone.classList.add("border-brand-light", "bg-slate-800"); });
-  dropzone?.addEventListener("dragleave", () => { dropzone.classList.remove("border-brand-light", "bg-slate-800"); });
-  dropzone?.addEventListener("drop", (e) => { e.preventDefault(); dropzone.classList.remove("border-brand-light", "bg-slate-800"); const files = Array.from(e.dataTransfer?.files || []); if (files.length) setFiles(files); });
+  fileTrigger.addEventListener("click", function() { fileInput.click(); });
+  dropzone.addEventListener("click", function(e) { if (e.target !== fileInput && e.target !== fileTrigger) fileInput.click(); });
+  fileInput.addEventListener("change", function() { var files = Array.from(fileInput.files || []); if (files.length) setFiles(files); });
+  dropzone.addEventListener("dragover", function(e) { e.preventDefault(); dropzone.classList.add("border-brand-light", "bg-slate-800"); });
+  dropzone.addEventListener("dragleave", function() { dropzone.classList.remove("border-brand-light", "bg-slate-800"); });
+  dropzone.addEventListener("drop", function(e) {
+    e.preventDefault();
+    dropzone.classList.remove("border-brand-light", "bg-slate-800");
+    var files = Array.from(e.dataTransfer.files || []);
+    if (files.length) setFiles(files);
+  });
 
-  form?.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async function(e) {
     e.preventDefault();
     msg.classList.add("hidden");
-    const firma = document.getElementById("ld-firma")?.value?.trim();
-    const email = document.getElementById("ld-email")?.value?.trim();
-    const telefon = document.getElementById("ld-telefon")?.value?.trim();
-    if (!stagedFiles.length) { showMsg("Prosím, vyberte nebo přetáhněte alespoň 2 soubory s nabídkami.", true); return; }
-    if (stagedFiles.length < 2) { showMsg("Pro smysluplné srovnání nahrajte alespoň 2 nabídky od různých dodavatelů.", true); return; }
+    var email = document.getElementById("ld-email").value.trim();
+    if (!stagedFiles.length) { showMsg("Prosím, vyberte alespoň 2 soubory s nabídkami.", true); return; }
+    if (stagedFiles.length < 2) { showMsg("Pro srovnání nahrajte alespoň 2 nabídky od různých dodavatelů.", true); return; }
     submitBtn.disabled = true;
-    const prevHtml = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Nahrávám soubory...';
+    var prevHtml = submitBtn.innerHTML;
+    submitBtn.innerHTML = "Nahrávám soubory...";
     try {
-      const filesBase64 = await Promise.all(
+      var filesBase64 = await Promise.all(
         stagedFiles.map(function(f) {
           return new Promise(function(res, rej) {
-            const r = new FileReader();
+            var r = new FileReader();
             r.onload = function() { res({ name: f.name, base64: r.result }); };
             r.onerror = rej;
             r.readAsDataURL(f);
           });
         })
       );
-      const result = await supabase.functions.invoke("process-landing-lead", {
+      var result = await supabase.functions.invoke("process-landing-lead", {
         body: { email: email, files: filesBase64 },
       });
       if (result.error) throw new Error(result.error.message);
-      showMsg("Děkujeme! Analýza probíhá. Výsledek přijde na e-mail do 5 minut.", false);
+      showMsg("Děkujeme! Výsledek přijde na e-mail do 5 minut.", false);
       form.reset();
       setFiles(null);
     } catch (err) {
-      showMsg(err.message || "Došlo k chybě připojení. Zkuste to prosím znovu.", true);
-    } finally {
-      submitBtn.innerHTML = prevHtml;
-      submitBtn.disabled = false;
-    }
-  });
-
-  const { error: fnErr } = await supabase.functions.invoke("process-landing-lead", {
-    body: { email, files: filesBase64 },
-  });
-
-  if (fnErr) throw new Error(fnErr.message);
-
-  showMsg("Děkujeme! Analýza probíhá. Výsledek přijde na e-mail do 5 minut.", false);
-  form.reset();
-  setFiles(null);
-} catch (err) {
-  showMsg(err.message || "Došlo k chybě připojení. Zkuste to prosím znovu.", true);
-} finally {
-  submitBtn.innerHTML = prevHtml;
-  submitBtn.disabled = false;
-}
-      showMsg("Děkujeme! Analýza probíhá. Výsledek s doporučením a výpočtem úspory vám přijde na e-mail do 5 minut.", false);
-      form.reset();
-      setFiles(null);
-    } catch (err) {
-      showMsg(err.message || "Došlo k chybě připojení. Zkuste to prosím znovu.", true);
+      showMsg(err.message || "Došlo k chybě. Zkuste to prosím znovu.", true);
     } finally {
       submitBtn.innerHTML = prevHtml;
       submitBtn.disabled = false;
