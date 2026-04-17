@@ -477,26 +477,31 @@
     submitBtn.disabled = true;
     const prevHtml = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Nahrávám soubory...';
-    const filePaths = [];
-    const fileNames = [];
     try {
-      for (const file of stagedFiles) {
-        const filePath = "incoming/" + crypto.randomUUID() + "_" + safeSegment(file.name);
-        const { error: upErr } = await supabase.storage.from(BUCKET).upload(filePath, file);
-        if (upErr) throw new Error("Chyba nahrávání (" + file.name + "): " + upErr.message);
-        filePaths.push(filePath);
-        fileNames.push(file.name);
-      }
-      stry {
-  // Převeď soubory na base64
-  const filesBase64 = await Promise.all(
-    stagedFiles.map(f => new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res({ name: f.name, base64: r.result });
-      r.onerror = rej;
-      r.readAsDataURL(f);
-    }))
-  );
+      const filesBase64 = await Promise.all(
+        stagedFiles.map(function(f) {
+          return new Promise(function(res, rej) {
+            const r = new FileReader();
+            r.onload = function() { res({ name: f.name, base64: r.result }); };
+            r.onerror = rej;
+            r.readAsDataURL(f);
+          });
+        })
+      );
+      const result = await supabase.functions.invoke("process-landing-lead", {
+        body: { email: email, files: filesBase64 },
+      });
+      if (result.error) throw new Error(result.error.message);
+      showMsg("Děkujeme! Analýza probíhá. Výsledek přijde na e-mail do 5 minut.", false);
+      form.reset();
+      setFiles(null);
+    } catch (err) {
+      showMsg(err.message || "Došlo k chybě připojení. Zkuste to prosím znovu.", true);
+    } finally {
+      submitBtn.innerHTML = prevHtml;
+      submitBtn.disabled = false;
+    }
+  });
 
   const { error: fnErr } = await supabase.functions.invoke("process-landing-lead", {
     body: { email, files: filesBase64 },
