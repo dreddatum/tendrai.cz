@@ -19,7 +19,8 @@
     "tailwindcss": "latest",
     "class-variance-authority": "latest",
     "wouter": "latest",
-    "zod": "latest"
+    "zod": "latest",
+    "lucide-react": "latest"
   },
   "devDependencies": {
     "@hookform/resolvers": "latest",
