@@ -19,8 +19,7 @@
     "tailwindcss": "latest",
     "class-variance-authority": "latest",
     "wouter": "latest",
-    "zod": "latest",
-    "lucide-react": "latest"
+    "zod": "latest"
   },
   "devDependencies": {
     "@hookform/resolvers": "latest",
@@ -52,6 +51,7 @@
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
     "@tailwindcss/typography": "latest",
+    "@tailwindcss/vite": "latest",
     "@tanstack/react-query": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
